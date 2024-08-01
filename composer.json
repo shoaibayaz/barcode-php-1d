@@ -50,6 +50,12 @@
     "require": {
         "php": ">=7.4",
         "ext-gd": "*",
-        "barcode-bakery/barcode-common": ">=7.0.3"
-    }
+        "barcode-bakery/barcode-common": "dev-custom"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/shoaibayaz/barcode-php-common"
+        }
+    ]
 }
