@@ -88,6 +88,11 @@ class BCGupce extends BCGBarcode1D
         );
     }
 
+    public function setCode($code)
+    {
+        $this->upce = $code;
+    }
+
     /**
      * Draws the barcode.
      *
@@ -114,8 +119,10 @@ class BCGupce extends BCGBarcode1D
         $this->drawText($image, 0, 0, $this->positionX, $this->thickness);
 
         if ($this->isDefaultEanLabelEnabled()) {
-            $dimension = $this->labelCenter->getDimension();
-            $this->drawExtendedBars($image, $dimension[1] - 2);
+            if (!is_null($this->labelCenter)) {
+                $dimension = $this->labelCenter->getDimension();
+                $this->drawExtendedBars($image, $dimension[1] - 2);
+            }
         }
     }
 
@@ -176,6 +183,7 @@ class BCGupce extends BCGBarcode1D
      */
     protected function isDefaultEanLabelEnabled(): bool
     {
+        return true;
         $label = $this->getLabel();
         $font = $this->font;
         return $label !== null && $label !== '' && $font !== null && $this->defaultLabel !== null;
